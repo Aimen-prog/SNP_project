@@ -6,7 +6,7 @@ class SNP(models.Model):
     chromosome_pos = models.IntegerField()
 
     def __str__(self):
-        return "rsid: " +self.rsid
+        return "rsid: " + str(self.rsid)
 
 
 class Reference(models.Model):
@@ -16,13 +16,13 @@ class Reference(models.Model):
     date = models.DateField()
 
     def __str__(self):
-        return "pubmed id: " + self.pubmed_id
+        return "pubmed id: " + str(self.pubmed_id)
 
 class Disease_Trait(models.Model):
     name = models.CharField(max_length=50, primary_key=True)
 
     def __str__(self):
-        return "disease: " +self.name
+        return "disease: " + self.name
 
 
 class SNP_Phenotype_Reference(models.Model):
@@ -31,6 +31,3 @@ class SNP_Phenotype_Reference(models.Model):
     disease_trait = models.ForeignKey(Disease_Trait, on_delete=models.CASCADE)
     pvalue = models.FloatField()
     neglog10pvalue = models.FloatField()
-
-    def __str__(self):
-        return "rsid: " + self.snp_rsid + " disease: " + self.disease_trait + " pubmed id: " + self.reference_id
