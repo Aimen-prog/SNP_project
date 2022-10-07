@@ -1,0 +1,14 @@
+
+.navbar-inverse {
+    background-color: #0d48a1;
+
+}
+
+span{color: darkgrey }
+
+.navbar-inverse .navbar-brand,
+.navbar-inverse .navbar-text {
+    color: darkgrey;
+    font-family: system-ui;
+}
+
