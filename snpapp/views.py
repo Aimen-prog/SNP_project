@@ -30,7 +30,7 @@ def Login(request):
             messages.success(request, f' Welcome {username} !')
             return redirect('index')
         else:
-            messages.info(request, f'account does not exist')
+            messages.info(request, f'Account does not exist')
     form = AuthenticationForm()
     return render(request, 'snpapp/login.html', {'form':form,'title':'Log in'})
 
