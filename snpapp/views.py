@@ -5,8 +5,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from .forms import UserRegisterForm
 
 
-def index(request):
-    return render(request, 'snpapp/index.html', {'title': 'index'})
+def home(request):
+    return render(request, 'snpapp/home.html', {'title': 'home'})
 
 def register(request):
     if request.method == 'POST':
@@ -28,7 +28,7 @@ def Login(request):
         if user is not None:
             form = login(request, user)
             messages.success(request, f' Welcome {username} !')
-            return redirect('index')
+            return redirect('home')
         else:
             messages.info(request, f'Account does not exist')
     form = AuthenticationForm()

@@ -29,7 +29,7 @@ urlpatterns = [
 
     path('', include('snpapp.urls')),
     path('login/', v.Login, name='login'),
-    path('logout/', auth.LogoutView.as_view(template_name='snpapp/index.html'), name='logout'),
+    path('logout/', auth.LogoutView.as_view(template_name='snpapp/home.html'), name='logout'),
     path('register/', v.register, name='register'),
 
 ]
