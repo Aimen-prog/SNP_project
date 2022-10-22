@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class SNP(models.Model):
     rsid = models.IntegerField(primary_key=True)
     chromosome_number = models.IntegerField()
@@ -17,6 +18,7 @@ class Reference(models.Model):
 
     def __str__(self):
         return "pubmed id: " + str(self.pubmed_id)
+
 
 class Disease_Trait(models.Model):
     name = models.CharField(max_length=50, primary_key=True)
