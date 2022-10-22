@@ -2,22 +2,22 @@ from django.db import models
 
 
 class SNP(models.Model):
-    rsid = models.IntegerField(primary_key=True)
-    chromosome_number = models.IntegerField()
+    rsid = models.CharField(max_length=300, primary_key=True)
+    chromosome_number = models.CharField(max_length=5)
     chromosome_pos = models.IntegerField()
 
     def __str__(self):
-        return "rsid: " + str(self.rsid)
+        return "rsid: " + self.rsid
 
 
 class Reference(models.Model):
-    pubmed_id = models.IntegerField(primary_key=True)
-    journal = models.CharField(max_length=200)
+    pubmed_id = models.CharField(primary_key=True)
+    journal = models.CharField(max_length=100)
     title = models.CharField(max_length=200)
     date = models.DateField()
 
     def __str__(self):
-        return "pubmed id: " + str(self.pubmed_id)
+        return "pubmed id: " + self.pubmed_id
 
 
 class Disease_Trait(models.Model):
@@ -28,7 +28,6 @@ class Disease_Trait(models.Model):
 
 
 class SNP_Phenotype_Reference(models.Model):
-    id = models.IntegerField(primary_key=True)
     snp_rsid = models.ForeignKey(SNP, on_delete=models.CASCADE)
     reference_id = models.ForeignKey(Reference, on_delete=models.CASCADE)
     disease_trait = models.ForeignKey(Disease_Trait, on_delete=models.CASCADE)
