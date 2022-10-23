@@ -35,6 +35,10 @@ class Command(BaseCommand):
 
             phenotype.name = row[7]
 
+
+            all.snp_rsid = SNP.objects.get(str(row[21]))
+            all.reference_id = Reference.objects.get(int(row[1]))
+            all.disease_trait = Disease_Trait.objects.get(str(row[7]))
             all.pvalue = row[27]
             all.neglog10pvalue = row[28]
 

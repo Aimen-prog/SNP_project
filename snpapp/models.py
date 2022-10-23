@@ -11,7 +11,7 @@ class SNP(models.Model):
 
 
 class Reference(models.Model):
-    pubmed_id = models.CharField(primary_key=True)
+    pubmed_id = models.CharField(max_length=200, primary_key=True)
     journal = models.CharField(max_length=100)
     title = models.CharField(max_length=200)
     date = models.DateField()
@@ -33,3 +33,5 @@ class SNP_Phenotype_Reference(models.Model):
     disease_trait = models.ForeignKey(Disease_Trait, on_delete=models.CASCADE)
     pvalue = models.FloatField()
     neglog10pvalue = models.FloatField()
+
+
