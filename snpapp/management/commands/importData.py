@@ -15,36 +15,44 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         directory = os.path.dirname(os.path.dirname(__file__))
         path = os.path.join(directory, 'data', options['file'])
-        #read the data file
         reader = csv.reader(open(path, encoding='utf-8'), delimiter='\t', quotechar='"')
         next(reader)
         for row in reader:
+            if not row:
+                continue  # skip empty lines
             snip = SNP()
-            reference = Reference()
-            phenotype = Disease_Trait()
-            all = SNP_Phenotype_Reference()
-
             snip.rsid = row[21]
             snip.chromosome_number = row[11]
             snip.chromosome_pos = row[12]
 
-            reference.pubmed_id = row[1]
-            reference.journal = row[4]
-            reference.title = row[6]
-            reference.date = row[3]
 
-            phenotype.name = row[7]
-
-
-            all.snp_rsid = SNP.objects.get(str(row[21]))
-            all.reference_id = Reference.objects.get(int(row[1]))
-            all.disease_trait = Disease_Trait.objects.get(str(row[7]))
-            all.pvalue = row[27]
-            all.neglog10pvalue = row[28]
-
-            all.save()
-            phenotype.save()
-            reference.save()
             snip.save()
+
+        # reader2 = csv.reader(open(path, encoding='utf-8'), delimiter='\t', quotechar='"')
+        # next(reader2)
+        # for row in reader2:
+        #     reference = Reference()
+        #     reference.pubmed_id = row[1]
+        #     reference.journal = row[4]
+        #     reference.title = row[6]
+        #     reference.date = row[3]
+        #     reference.save()
+        #
+        # reader3 = csv.reader(open(path, encoding='utf-8'), delimiter='\t', quotechar='"')
+        # next(reader3)
+        # for row in reader3:
+        #     phenotype = Disease_Trait()
+        #     phenotype.name = row[7]
+        #     phenotype.save()
+        #
+        #
+        # reader4 = csv.reader(open(path, encoding='utf-8'), delimiter='\t', quotechar='"')
+        # next(reader4)
+        # for row in reader4:
+        #     all = SNP_Phenotype_Reference()
+        #     all.pvalue = row[27]
+        #     all.neglog10pvalue = row[28]
+        #     all.save()
+        #
         return HttpResponse("<h1>data imported successfully!</h1>")
 
