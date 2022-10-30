@@ -14,12 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from snpapp import views as v
 from django.contrib.auth import views as auth
-
 from .router import router
 from rest_framework.authtoken import views
+
+
 
 urlpatterns = [
 
@@ -31,5 +32,8 @@ urlpatterns = [
     path('login/', v.Login, name='login'),
     path('logout/', auth.LogoutView.as_view(template_name='snpapp/home.html'), name='logout'),
     path('register/', v.register, name='register'),
+
+    re_path(r'^class-based/$', v.class_based),
+    re_path(r'^search_phenotype/$', v.search_phenotype, name='search_phenotype'),
 
 ]

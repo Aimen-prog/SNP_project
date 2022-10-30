@@ -12,6 +12,10 @@ class Command(BaseCommand):
         parser.add_argument('file', type=str)
 
     def handle(self, *args, **options):
+        SNP.objects.all().delete()  #drop table
+        Reference.objects.all().delete()
+        Disease_Trait.objects.all().delete()
+        SNP2Phenotype2Ref.objects.all().delete()
 
         directory = os.path.dirname(os.path.dirname(__file__))
         path = os.path.join(directory, 'data', options['file'])
@@ -20,10 +24,10 @@ class Command(BaseCommand):
         for row in reader:
             # CREATE SNP TABLE
             try:
-                stored_snp = SNP.objects.get(rsid=row[21])
+                stored_snp = SNP.objects.get(rsid=row[23])
             except ObjectDoesNotExist:
                 snp = SNP.objects.create(
-                    rsid=row[21],  #'SNPS'
+                    rsid=row[23],  #'RSID_CURRENT'
                     chromosome_number=row[11], #'CHR_ID'
                     chromosome_pos=row[12] #'CHR_POS'
                 )
@@ -46,7 +50,7 @@ class Command(BaseCommand):
                     name=row[7] #'DISEASE/TRAIT'
                 )
             # CREATE SNP2Phenotype2Ref TABLE
-            id_snip = SNP.objects.filter(rsid=row[21])  # 'SNPS'
+            id_snip = SNP.objects.filter(rsid=row[23])  # 'RSID_CURRENT'
             id_ref = Reference.objects.filter(pubmed_id=row[1])  # 'PUBMEDID'
             id_trait = Disease_Trait.objects.filter(name=row[7])  # 'DISEASE/TRAIT'
 

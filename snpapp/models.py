@@ -35,3 +35,5 @@ class SNP2Phenotype2Ref(models.Model):
     pvalue = models.FloatField(default=0)
     neglog10pvalue = models.FloatField(default=0)
 
+    def __str__(self):
+        return "P-value: " + self.pvalue + "-log(P-value): " + self.neglog10pvalue
