@@ -1,0 +1,48 @@
+{% extends "snpapp/home.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+
+{% block start %}
+    <!--Unescape for autocomplete strins-->
+    {% autoescape off %}
+        <head>
+            <!--Adding Javascript and css-->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>
+
+            <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+                  rel="stylesheet" type="text/css"/>
+            <link rel="stylesheet" type="text/css" href="{% static "tables.css" %}"/>
+        </head>
+
+        <body>
+        <div>
+            <h1>Search for phenotype</h1>
+            <form method="POST" class="post-form">{% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="save btn btn-default">Search</button>
+            </form>
+            <script>
+
+            </script>
+
+            <script>
+                $(function () {
+                    var availableTags = [
+                        {% for pheno in languages %}
+                            "{{pheno.name}}",
+                        {% endfor %}
+                    ];
+                    $("#tags").autocomplete({
+                        source: availableTags
+                    });
+                });
+            </script>
+
+
+        </div>
+        </body>
+    {% endautoescape %}
+{% endblock start %}

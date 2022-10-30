@@ -33,7 +33,6 @@ urlpatterns = [
     path('logout/', auth.LogoutView.as_view(template_name='snpapp/home.html'), name='logout'),
     path('register/', v.register, name='register'),
 
-    re_path(r'^class-based/$', v.class_based),
-    re_path(r'^search_phenotype/$', v.search_phenotype, name='search_phenotype'),
+    re_path(r'^phenotype_search/$', v.phenotype_search, name='phenotype_search'),
 
 ]

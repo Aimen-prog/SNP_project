@@ -5,10 +5,6 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import UserRegisterForm, phenotype_search_form
 from .models import Disease_Trait, SNP2Phenotype2Ref, Reference, SNP
-from django_tables2 import SingleTableView
-from .tables import (
-    PhenotypeTable
-)
 
 
 
@@ -44,13 +40,8 @@ def Login(request):
 
 
 
-class ClassBased(SingleTableView):
-    table_class = PhenotypeTable
-    queryset = Disease_Trait.objects.all()
-    template_name = "snpapp/phenotype_list.html"
-class_based = ClassBased.as_view()
-
-def search_phenotype(request):
+#@login_required
+def phenotype_search(request):
     if request.method == "POST":
         form = phenotype_search_form(request.POST)
         if form.is_valid():
@@ -59,7 +50,8 @@ def search_phenotype(request):
             return render(request, 'snpapp/phenotype_detail.html', {'posts': joinData})
     else:
         form = phenotype_search_form()
-    return render(request, 'snpapp/search_phenotype.html', {'form': form})
+        allpheno = Disease_Trait.objects.all()
+    return render(request, 'snpapp/phenotype_search.html', {'form': form,"languages":allpheno})
 
 
 

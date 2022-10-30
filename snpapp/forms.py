@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 
+
 class UserRegisterForm(UserCreationForm):
     first_name = forms.CharField(max_length=20)
     last_name = forms.CharField(max_length=20)
@@ -16,3 +17,4 @@ class UserRegisterForm(UserCreationForm):
 
 class phenotype_search_form(forms.Form):
     my_phenotype = forms.CharField(label='Phenotype', required=True)
+    my_phenotype.widget = forms.TextInput(attrs={'id': 'tags', })
