@@ -1,10 +1,13 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
+from django.views.decorators.csrf import csrf_exempt
+import json
 from .forms import UserRegisterForm, phenotype_search_form
 from .models import Disease_Trait, SNP2Phenotype2Ref, Reference, SNP
+from django.db.models import F
 
 
 
@@ -40,18 +43,44 @@ def Login(request):
 
 
 
-#@login_required
+# @login_required
 def phenotype_search(request):
     if request.method == "POST":
         form = phenotype_search_form(request.POST)
         if form.is_valid():
-            joinData = SNP2Phenotype2Ref.objects.filter(disease_trait_id=form.cleaned_data['my_phenotype'])
-
+            # join SNP2Pheno2Ref and Reference tables to get information about phenotype
+            joinData = SNP2Phenotype2Ref.objects.select_related('reference')\
+                .annotate(journal=F('reference__journal') ,title=F('reference__title'), date=F('reference__date') )\
+                .values('snp_id', 'reference_id', 'disease_trait_id','pvalue','neglog10pvalue','journal','title', 'date')\
+                .filter(disease_trait_id=form.cleaned_data['my_phenotype'])
             return render(request, 'snpapp/phenotype_detail.html', {'posts': joinData})
     else:
         form = phenotype_search_form()
-        allpheno = Disease_Trait.objects.all()
-    return render(request, 'snpapp/phenotype_search.html', {'form': form,"languages":allpheno})
+        all_pheno = Disease_Trait.objects.all()
+    return render(request, 'snpapp/phenotype_search.html', {'form': form, "phenotypes": all_pheno})
+
+
+def phenotype_list(request):
+    all_pheno = Disease_Trait.objects.all()
+    return render(request, 'snpapp/phenotype_list.html', {'posts': all_pheno})
+
+
+@csrf_exempt
+def phenotype_selected(request, disease_id):
+        disease = SNP2Phenotype2Ref.objects.select_related('reference') \
+            .annotate(journal=F('reference__journal'), title=F('reference__title'), date=F('reference__date')) \
+            .values('snp_id', 'reference_id', 'disease_trait_id', 'pvalue', 'neglog10pvalue', 'journal', 'title', 'date') \
+            .filter(disease_trait_id=disease_id)
+        return render(request, 'snpapp/phenotype_detail.html', {'posts': disease})
+
+
+
+
+
+
+
+
+
 
 
 

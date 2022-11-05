@@ -5,17 +5,53 @@
 
 
 {% block start %}
-{% load render_table from django_tables2 %}
-<head>
+    {% autoescape off %}
+    <head>
+        <!--Adding Javascript and css-->
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static "tables.css" %}"/>
+        <!--Initializing dataTable-->
+        <script>
+            $(document).ready(function () {
+                $('#phenotypelist').DataTable();
+            });
+        </script>
+    </head>
+    <body>
+    <div>
+        <table id="phenotypelist" class="display">
+            <thead>
+            <tr>
+                <th>Disease/Trait</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for post in posts %}
+                <tr >
+                    <td><a href="/phenotype_selected/{{ post.name }}">{{ post.name }}</a></td>
+                </tr>
+            {% endfor %}
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-
-</head>
-<body>
-
-{% render_table table %}
+            </tbody>
+        </table>
+    </div>
 
 
-</body>
+    </body>
+    {% endautoescape %}
 {% endblock start %}
+
+
+
+
+
+
+
+
+
+
+
+
+

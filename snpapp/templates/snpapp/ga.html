@@ -1,0 +1,27 @@
+    {#data-href="/phenotype_search/" #}
+{#    <script>#}
+{#    $(".clickable-row").click(function() {#}
+        {#window.location = $(this).data("href");#}
+{#        var item = $(this).closest("tr").find(".nr").text();#}
+{#        url = "{% url 'phenotype_searched' disease_id="Intelligence" %}".replace("Intelligence", item)#}
+{#        console.log(url)#}
+{#        return url;#}
+{#    });#}
+{##}
+{#    </script>#}
+
+    <script>
+
+    $(function(){
+        const link = $('#redirect');
+    $(".clickable-row").click(function() {
+            if ($(this).is(':checked'))
+            {
+              var checked = $(this).val();
+              # here you change the href with id of input checked and the baseurl
+              $(link).href = $(link).data('baseurl') + "&radio_id=" + checked;
+              console.log(checked);
+            }
+        });
+    });
+    </script>

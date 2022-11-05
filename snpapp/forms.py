@@ -16,5 +16,5 @@ class UserRegisterForm(UserCreationForm):
 
 
 class phenotype_search_form(forms.Form):
-    my_phenotype = forms.CharField(label='Phenotype', required=True)
+    my_phenotype = forms.CharField(label='Phenotype name*', required=True)
     my_phenotype.widget = forms.TextInput(attrs={'id': 'tags', })
