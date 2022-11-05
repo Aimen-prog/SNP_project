@@ -30,7 +30,6 @@ urlpatterns = [
     path('login/', v.Login, name='login'),
     path('logout/', auth.LogoutView.as_view(template_name='snpapp/home.html'), name='logout'),
     path('register/', v.register, name='register'),
-    re_path(r'^favicon\.ico$',RedirectView.as_view(url='/static/images/favicon.ico')),
     re_path(r'^phenotype_search/$', v.phenotype_search, name='phenotype_search'),
     re_path(r'^phenotype_list/$', v.phenotype_list, name='phenotype_list'),
     path('phenotype_selected/<str:disease_id>', v.phenotype_selected, name='phenotype_selected'),
