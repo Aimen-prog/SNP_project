@@ -33,5 +33,8 @@ urlpatterns = [
     re_path(r'^phenotype_search/$', v.phenotype_search, name='phenotype_search'),
     re_path(r'^phenotype_list/$', v.phenotype_list, name='phenotype_list'),
     path('phenotype_selected/<str:disease_id>', v.phenotype_selected, name='phenotype_selected'),
+    re_path(r'^snp_search/$', v.snp_search, name='snp_search'),
+    path('snp_selected/<str:rs_id>/<str:ref_id>', v.snp_selected, name='snp_selected'),
+
 
 ]

@@ -18,3 +18,8 @@ class UserRegisterForm(UserCreationForm):
 class phenotype_search_form(forms.Form):
     my_phenotype = forms.CharField(label='Phenotype name*', required=True)
     my_phenotype.widget = forms.TextInput(attrs={'id': 'tags', })
+
+class snp_search_form(forms.Form):
+    my_snp = forms.CharField(label='Snp Rsid*', required=True)
+    my_snp.widget = forms.TextInput(attrs={'id': 'snptags', })
+

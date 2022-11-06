@@ -13,33 +13,41 @@
     <!--Initializing dataTable-->
     <script>
         $(document).ready(function () {
-        $('#phenotype').DataTable();
+        $('#snptab').DataTable();
         });
     </script>
 </head>
 
 <body>
 <div>
- <table id="phenotype" class="display" >
+ <table id="snptab" class="display" >
  <thead>
   <tr>
-    <th>Disease/Trait</th>
     <th>Rsid</th>
+    <th>Chromosome number</th>
+    <th>Chromosome position</th>
+    <th>Disease/Trait</th>
     <th>Pubmed id</th>
     <th>Journal</th>
     <th>Study</th>
     <th>Date</th>
+    <th>Pvalue</th>
+    <th>-log(Pvalue)</th>
   </tr>
   </thead>
  <tbody>
     {% for post in posts %}
   <tr>
-    <td>{{ post.disease_trait_id}}</td>
-      <td><a href="/snp_selected/{{ post.snp_id }}/{{ post.reference_id }}">{{ post.snp_id}}</a></td>
-    <td>{{ post.reference_id }}</td>
+    <td>{{ post.snp_id}}</td>
+    <td>{{ post.chrom}}</td>
+    <td>{{ post.pos }}</td>
+    <td>{{ post.disease_trait_id }}</td>
+    <td>{{ post.reference_id}}</td>
     <td>{{ post.journal}}</td>
     <td>{{ post.title}}</td>
     <td>{{ post.date }}</td>
+    <td>{{ post.pvalue}}</td>
+    <td>{{ post.neglog10pvalue}}</td>
   </tr>
      {% endfor %}
  </tbody>

@@ -19,7 +19,7 @@
 
         <body>
         <div>
-            <h1>Search for phenotype</h1>
+            <h1>Search for SNP</h1>
             <form method="POST" class="post-form">{% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit" class="save btn btn-default">Search</button>
@@ -28,13 +28,14 @@
             <script>
                 $(function () {
                     var availableTags = [
-                        {% for pheno in phenotypes %}
-                            "{{pheno.name}}",
+                        {% for snip in snps %}
+                            "{{snip.rsid}}",
                         {% endfor %}
                     ];
-                    $("#tags").autocomplete({
+                    $("#snptags").autocomplete({
                         source: availableTags
                     });
+
                 });
             </script>
         </div>
