@@ -92,7 +92,7 @@ def snp_search(request):
 
 
 @csrf_exempt
-def snp_selected(request, rs_id,ref_id):
+def snp_selected(request, rs_id, ref_id):
         snp = SNP2Phenotype2Ref.objects.select_related('snp','reference')\
                 .annotate(chrom=F('snp__chromosome_number') , pos=F('snp__chromosome_pos'),journal=F('reference__journal'),
                           title=F('reference__title'), date=F('reference__date') )\

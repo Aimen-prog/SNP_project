@@ -4,12 +4,30 @@
 
 }
 
+th:hover {background-color: #90b9ee;}
+div {
+  margin: 5px;
+}
+body{
+  margin-top: 7px;
+}
 
 span{color: darkgrey }
 
-.navbar-inverse .navbar-brand,
+.navbar-inverse ,
 .navbar-inverse .navbar-text {
     color: darkgrey;
     font-family: system-ui;
 }
 
+
+.navbar-brand {
+    max-width:100px;
+    position: absolute;
+    top: 9px;
+    left: 10px;
+}
+
+.container{
+  background-image: url('../static/img/bghome.jpg');
+}

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 
 {% block start %}
-     <link rel="stylesheet" type="text/css" href="{% static "tables.css" %}"/>
+     <link rel="stylesheet" type="text/css" href="{% static "home.css" %}"/>
 <head>
     <!--Adding Javascript and css-->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -41,7 +41,7 @@
     <td>{{ post.snp_id}}</td>
     <td>{{ post.chrom}}</td>
     <td>{{ post.pos }}</td>
-    <td>{{ post.disease_trait_id }}</td>
+    <td><a href="/phenotype_selected/{{ post.disease_trait_id }}">{{ post.disease_trait_id }}</a></td>
     <td>{{ post.reference_id}}</td>
     <td>{{ post.journal}}</td>
     <td>{{ post.title}}</td>

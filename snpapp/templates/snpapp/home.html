@@ -4,87 +4,111 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta name="language" content="English">
-  <meta name="author" content="Aimen CHERIF">
-  <title>SNP Analyzer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="language" content="English">
+    <meta name="author" content="Aimen CHERIF">
+    <title>SNP Analyzer</title>
+    <!-- Favicon -->
+    <link rel="icon" href="{% static '/img/homelogo.png' %}">
 
-  <!-- bootstrap file -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!-- bootstrap file-->
+    <!-- bootstrap file -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- bootstrap file-->
 
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- main css -->
+    <link rel="stylesheet" type="text/css" href="{% static "home.css" %}"/>
+    <!-- message -->
 
+    {% if messages %}
+        {% for message in messages %}
 
-  <!-- main css -->
-  <link rel="stylesheet" type="text/css" href="{% static "home.css" %}"/>
-  <!-- message -->
+            <script>
+                alert("{{ message }}");
+            </script>
 
-  {% if messages %}
-  {% for message in messages %}
-
-  <script>
-    alert("{{ message }}");
-  </script>
-
-  {% endfor %}
-  {% endif %}
+        {% endfor %}
+    {% endif %}
 
 </head>
 
 
-
-
 <body class="container-fluid">
-
-{#  Content of the navigation bar#}
-  <header class="row">
+<!-- Header start-->
+<header class="row">
     <!-- navbar-->
     <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
+        <div class="container-fluid">
 
-        <div class="navbar-header">
-            <a class="navbar-brand" href="{% url "home" %}"> <b>SNP Analyzer </b></a>
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{% url "home" %}"> <img style="max-width:100px;position: absolute;top: 0px;left: 20px;"
+                                                                      src="{% static 'img/homelogo.png' %}"></a>
+            </div>
+
+            <div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{% url "home" %}"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url "logout" %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                        </li>
+                    {% else %}
+                        <li><a href="{% url "register" %}"><span class="glyphicon glyphicon-user"></span> Sign up</a>
+                        </li>
+                        <li><a href="{% url "login" %}"><span class="glyphicon glyphicon-log-in"></span> Log in</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+
+
         </div>
-
-          <div>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="{% url "home" %}"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-
-            {% if user.is_authenticated %}
-            <li><a href="{% url "logout" %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-            {% else %}
-            <li><a href="{% url "register" %}"><span class="glyphicon glyphicon-user"></span> Sign up</a></li>
-            <li><a href="{% url "login" %}"><span class="glyphicon glyphicon-log-in"></span> Log in</a></li>
-            {% endif %}
-          </ul>
-          </div>
-
-
-      </div>
     </nav>
+<!-- Header end -->
+</header>
 
-  </header>
-
-  <br/>
-  <br>
-  <br>
-  <div class="row">
+<br/>
+<br>
+<br>
+  <section class=" bg-gradient-overlay">
+    <div class="container">
+    <div class="row">
     {% block start %}
-    {% if user.is_authenticated %}
-    <center><h1>Welcome back {{user.username}}!</h1></center>
-    {% else %}
-    <center> <h1>Welcome to SNP Analyzer!</h1></center>
-    {% endif %}
+        {% if user.is_authenticated %}
+            <center><h1>Welcome back {{ user.username }}!</h1></center>
+        {% else %}
+            <center><h1>Welcome to SNP Analyzer!</h1></center>
+        {% endif %}
     {% endblock %}
-  </div>
-</body>
+</div>
+    </div>
+  </section>
 
+
+
+<!-- Footer begin -->
+  <footer class=" mt-5 bg-img bg-gradient-overlay" style="background-image: url({% static 'img/bghome.jpg' %});">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center mt-5">
+          <div class="single-footer-widget">
+            <div class="footer-contact">
+              <p><i class="icon_phone"></i> +33 6 26 06 85 78</p>
+              <p><i class="icon_mail"></i>aimen.cherif@etu.univ-amu.fr</p>
+            </div>
+              <p>Author: <b> Aimen CHERIF </b></p>
+          </div>
+      </div>
+    </div>
+  </footer>
+<!-- Footer end -->
+</body>
 </html>

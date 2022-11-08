@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 
 {% block start %}
-     <link rel="stylesheet" type="text/css" href="{% static "tables.css" %}"/>
+     <link rel="stylesheet" type="text/css" href="{% static "home.css" %}"/>
 <head>
     <!--Adding Javascript and css-->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -35,7 +35,7 @@
     {% for post in posts %}
   <tr>
     <td>{{ post.disease_trait_id}}</td>
-      <td><a href="/snp_selected/{{ post.snp_id }}/{{ post.reference_id }}">{{ post.snp_id}}</a></td>
+    <td><a href="/snp_selected/{{ post.snp_id }}/{{ post.reference_id }}">{{ post.snp_id}}</a></td>
     <td>{{ post.reference_id }}</td>
     <td>{{ post.journal}}</td>
     <td>{{ post.title}}</td>
