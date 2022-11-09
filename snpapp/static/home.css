@@ -1,25 +1,55 @@
 
 .navbar-inverse {
-    background-color: #0d48a1;
+    background-color: rgb(40, 50, 65);
 
 }
+
+nav {
+  /*box-shadow: 0 2px 6px 0 rgb(253, 140, 1);*/
+    box-shadow: 0 2px 6px 0 rgb(206, 25, 25);
+}
+
+body{
+      margin-top: 50px;
+}
+
 
 th:hover {background-color: #90b9ee;}
 div {
   margin: 5px;
 }
-body{
-  margin-top: 7px;
+
+#nolog{
+
+  background-image: url('../static/img/img.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 600px;
+
+
+}
+#hometext{
+    color: white;
+
 }
 
-span{color: darkgrey }
+footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0px;
+}
 
-.navbar-inverse ,
-.navbar-inverse .navbar-text {
+span{
+    color: darkgrey
+}
+
+.navbar-inverse , .navbar-inverse .navbar-text {
     color: darkgrey;
     font-family: system-ui;
 }
-
 
 .navbar-brand {
     max-width:100px;
@@ -28,6 +58,3 @@ span{color: darkgrey }
     left: 10px;
 }
 
-.container{
-  background-image: url('../static/img/bghome.jpg');
-}

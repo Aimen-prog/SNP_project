@@ -75,27 +75,31 @@
 <!-- Header end -->
 </header>
 
-<br/>
-<br>
-<br>
-  <section class=" bg-gradient-overlay">
-    <div class="container">
-    <div class="row">
-    {% block start %}
-        {% if user.is_authenticated %}
-            <center><h1>Welcome back {{ user.username }}!</h1></center>
-        {% else %}
-            <center><h1>Welcome to SNP Analyzer!</h1></center>
-        {% endif %}
-    {% endblock %}
-</div>
-    </div>
+{% block start %}
+    {% if user.is_authenticated %}
+        <center><h1>Welcome back {{ user.username }}!</h1></center>
+    {% else %}
+  <section id="nolog">
+    <center><img style="width: 20%; margin-top: 50px" src="{% static 'img/homelogo.png' %}"></center>
+          <div id="hometext">
+            <br><br>
+            <b style="font-size: 1.2em;"> Welcome to SNP Analyzer.</b><br><br>
+            &#8594 Registration is required to get started.<br><br>
+            &#8594 After registration, you can:<br><br>
+            &#10004 Search for a phenotype(Disease/Trait) of interest and get further informations. You can either use a search bar or a list.<br>
+            <br>
+            &#10004 Search for an SNP of interest using the Rsid and find its related informations.<br><br>
+        </div>
   </section>
+
+   {% endif %}
+    {% endblock %}
+
 
 
 
 <!-- Footer begin -->
-  <footer class=" mt-5 bg-img bg-gradient-overlay" style="background-image: url({% static 'img/bghome.jpg' %});">
+  <footer class=" mt-5 bg-img bg-gradient-overlay" >
     <div class="container">
       <div class="row">
         <div class="col-12 text-center mt-5">
@@ -107,6 +111,7 @@
               <p>Author: <b> Aimen CHERIF </b></p>
           </div>
       </div>
+    </div>
     </div>
   </footer>
 <!-- Footer end -->
