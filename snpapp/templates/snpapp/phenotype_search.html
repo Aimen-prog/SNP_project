@@ -16,10 +16,14 @@
                   rel="stylesheet" type="text/css"/>
                 <!-- main css -->
             <link rel="stylesheet" type="text/css" href="{% static "home.css" %}"/>
+            <style>
+            .post-form {
+            font-size: 1.3em;
+            }</style>
         </head>
 
         <body>
-        <div>
+        <div style="width: 20%; margin-top: 55px;">
             <h1>Search for phenotype</h1>
             <form method="POST" class="post-form">{% csrf_token %}
                 {{ form.as_p }}

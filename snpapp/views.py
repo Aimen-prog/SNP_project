@@ -4,9 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.views.decorators.csrf import csrf_exempt
-import json
 from .forms import UserRegisterForm, phenotype_search_form, snp_search_form
-from .models import Disease_Trait, SNP2Phenotype2Ref, Reference, SNP
+from .models import Disease_Trait, SNP2Phenotype2Ref, SNP
 from django.db.models import F
 
 
@@ -33,7 +32,7 @@ def Login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             form = login(request, user)
-            messages.success(request, f' Welcome {username} !')
+            messages.success(request, f' Welcome {username}!')
             return redirect('home')
         else:
             messages.info(request, f'Account does not exist')
@@ -43,7 +42,7 @@ def Login(request):
 
 
 
-# @login_required
+@login_required
 def phenotype_search(request):
     if request.method == "POST":
         form = phenotype_search_form(request.POST)
@@ -59,12 +58,12 @@ def phenotype_search(request):
         all_pheno = Disease_Trait.objects.all()
     return render(request, 'snpapp/phenotype_search.html', {'form': form, "phenotypes": all_pheno})
 
-
+@login_required
 def phenotype_list(request):
     all_pheno = Disease_Trait.objects.all()
     return render(request, 'snpapp/phenotype_list.html', {'posts': all_pheno})
 
-
+@login_required
 @csrf_exempt
 def phenotype_selected(request, disease_id):
         disease = SNP2Phenotype2Ref.objects.select_related('reference') \
@@ -74,7 +73,7 @@ def phenotype_selected(request, disease_id):
         return render(request, 'snpapp/phenotype_detail.html', {'posts': disease})
 
 
-
+@login_required
 def snp_search(request):
     if request.method == "POST":
         form = snp_search_form(request.POST)
@@ -90,7 +89,7 @@ def snp_search(request):
         all_snp = SNP.objects.all()
     return render(request, 'snpapp/snp_search.html', {'form': form, "snps": all_snp})
 
-
+@login_required
 @csrf_exempt
 def snp_selected(request, rs_id, ref_id):
         snp = SNP2Phenotype2Ref.objects.select_related('snp','reference')\

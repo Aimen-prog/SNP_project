@@ -1,6 +1,6 @@
 {% load static %}
 {% load crispy_forms_tags %}
-<!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- bootstrap file-->
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -42,7 +41,7 @@
 </head>
 
 
-<body class="container-fluid">
+<body class="container-fluid" onload="load()">
 <!-- Header start-->
 <header class="row">
     <!-- navbar-->
@@ -50,21 +49,21 @@
         <div class="container-fluid">
 
             <div class="navbar-header">
-                <a class="navbar-brand" href="{% url "home" %}"> <img style="max-width:100px;position: absolute;top: 0px;left: 20px;"
+                <a class="navbar-brand" href="{% url "home" %}"> <img style="max-width:150px;position: absolute;top: 0px;left: 20px;"
                                                                       src="{% static 'img/homelogo.png' %}"></a>
             </div>
 
             <div>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{% url "home" %}"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                    <li><a href="{% url "home" %}"><h4><span class="glyphicon glyphicon-home"></span> Home</h4></a></li>
 
                     {% if user.is_authenticated %}
-                        <li><a href="{% url "logout" %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                        <li><a href="{% url "logout" %}"><h4><span class="glyphicon glyphicon-log-out"></span> Logout</h4></a>
                         </li>
                     {% else %}
-                        <li><a href="{% url "register" %}"><span class="glyphicon glyphicon-user"></span> Sign up</a>
+                        <li><a href="{% url "register" %}"><h4><span class="glyphicon glyphicon-user"></span> Sign up</h4></a>
                         </li>
-                        <li><a href="{% url "login" %}"><span class="glyphicon glyphicon-log-in"></span> Log in</a></li>
+                        <li><a href="{% url "login" %}"><h4><span class="glyphicon glyphicon-log-in"></span> Log in</h4></a></li>
                     {% endif %}
                 </ul>
             </div>
@@ -75,45 +74,107 @@
 <!-- Header end -->
 </header>
 
+ <div id="page-container">
+   <div id="content-wrap">
+
 {% block start %}
-    {% if user.is_authenticated %}
-        <center><h1>Welcome back {{ user.username }}!</h1></center>
-    {% else %}
-  <section id="nolog">
-    <center><img style="width: 20%; margin-top: 50px" src="{% static 'img/homelogo.png' %}"></center>
-          <div id="hometext">
-            <br><br>
-            <b style="font-size: 1.2em;"> Welcome to SNP Analyzer.</b><br><br>
-            &#8594 Registration is required to get started.<br><br>
-            &#8594 After registration, you can:<br><br>
-            &#10004 Search for a phenotype(Disease/Trait) of interest and get further informations. You can either use a search bar or a list.<br>
+    <section id="log">
+        {% if user.is_authenticated %}
             <br>
-            &#10004 Search for an SNP of interest using the Rsid and find its related informations.<br><br>
-        </div>
-  </section>
+            <center><h2 style="color:white;width: 20%; margin-top: 35px"> Welcome,
+            <h1 style="color:white;width: 20%; margin-top: 35px; text-transform: uppercase;">{{ user.username }}! </h1></h2></center>
 
-   {% endif %}
-    {% endblock %}
+            <button id = "search" type="button" onclick=location.href="{% url "phenotype_search" %}" >Phenotype Search </button>
+            <button id = "list" type="button" onclick=location.href="{% url "phenotype_list" %}" >Phenotype List</button>
+            <button id = "searchsnp" type="button" onclick=location.href="{% url "snp_search" %}" > SNP Search </button>
+
+        {% else %}
+            <!-- Not logged in -->
+
+                <center><img style="width: 20%; margin-top: 55px;" src="{% static 'img/homelogo.png' %}"></center>
+                <div id="hometext">
+                    <br><br>
+                    <h3><b style="font-size: 1.4em;"> Welcome to SNP Analyzer.</b></h3><br>
+                    <p style="font-size: 1.4em;">
+                    &#8594 Registration is required to get started.<br><br>
+                    &#8594 After registration, you can:<br><br>
+                    &#10004 Search for a phenotype(Disease/Trait) of interest and get further informations. You can either use a search bar or a list.
+                    <br><br>
+                    &#10004 Search for an SNP of interest using the Rsid and find its related informations.<br><br></p>
+                </div>
+
+                <!-- Some stats -->
+                <div class="row" style="padding-bottom: 10px">
+
+                <div class="text-center">
+                    <h3 class="text-light" style="color: white"><b style="font-size: 1.2em;">Explore & Discover</b></h3>
+                    <img src="{% static 'img/snplogo.png' %}">
+                    <h2 id='2' style="color: white" class="fs-2 text-light">0</h2>
+                    <h2 class="text-light" style="color: white">SNPs</h2>
+                </div>
+
+                <div class="text-center" >
+                    <img src="{% static 'img/phenologo.png' %}">
+                    <h2 id='1' style="color: white" class="fs-2 text-light">0</h2>
+                    <h2 class="text-light" style="color: white">Phenotypes</h2>
+                </div>
 
 
+                </div>
+            </section>
 
+
+   <script>
+      function animate(obj, initVal, lastVal, duration) {
+      let startTime = null;
+      //get the current timestamp and assign it to the currentTime variable
+      let currentTime = Date.now();
+      //pass the current timestamp to the step function
+      const step = (currentTime ) => {
+      //if the start time is null, assign the current time to startTime
+      if (!startTime) {
+         startTime = currentTime ;
+      }
+      //calculate the value to be used in calculating the number to be displayed
+      const progress = Math.min((currentTime - startTime)/ duration, 1);
+      //calculate what to be displayed using the value gotten above
+      obj.innerHTML = Math.floor(progress * (lastVal - initVal) + initVal);
+      //checking to make sure the counter does not exceed the last value (lastVal)
+      if (progress < 1) {
+         window.requestAnimationFrame(step);
+      } else {
+            window.cancelAnimationFrame(window.requestAnimationFrame(step));
+         }
+      };
+      //start animating
+         window.requestAnimationFrame(step);
+      }
+      let pheno = document.getElementById('1');
+      let snips = document.getElementById('2');
+      const load = () => {
+         animate(pheno, 0, 400, 5500);
+         animate(snips, 0, 22241, 5500);
+      }
+   </script>
+
+
+        {% endif %}
+{% endblock %}
 
 <!-- Footer begin -->
-  <footer class=" mt-5 bg-img bg-gradient-overlay" >
-    <div class="container">
+   </div>
+  <footer id="footer">
       <div class="row">
-        <div class="col-12 text-center mt-5">
-          <div class="single-footer-widget">
-            <div class="footer-contact">
-              <p><i class="icon_phone"></i> +33 6 26 06 85 78</p>
-              <p><i class="icon_mail"></i>aimen.cherif@etu.univ-amu.fr</p>
-            </div>
-              <p>Author: <b> Aimen CHERIF </b></p>
+          <div class="text-center" style="background-color:#0d3e5f;padding-top: 15px;padding-bottom: 10px;">
+              <p style="color: white"><i class="fa fa-user"></i><b> Author: </b> Aimen CHERIF</p>
+              <p style="color: white"><i class="fa fa-phone"></i><b> Phone: </b>  +33 6 26 06 85 78</p>
+              <p style="color: white"><i class="fa fa-envelope"></i><b> E-mail: </b> aimen.cherif@etu.univ-amu.fr</p>
+              <p style="color: white"><b> <a href="https://www.univ-amu.fr/"> Aix-Marseille University</a> </b></p>
           </div>
       </div>
-    </div>
-    </div>
   </footer>
+
 <!-- Footer end -->
+ </div>
 </body>
 </html>

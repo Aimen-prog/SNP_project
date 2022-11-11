@@ -1,12 +1,14 @@
 
 .btn{
+    cursor: pointer;
     padding:1.5%;
-    background-color: #0d48a1;
+    background-color: #0d3e5f;
     color:darkgrey;
 }
 
 .btn:hover {
+  cursor: pointer;
   background-color:whitesmoke;
   color: darkgrey;
-    border-color: #0d48a1;
+  border-color: #0d3e5f;
 }
