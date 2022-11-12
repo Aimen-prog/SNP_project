@@ -86,7 +86,8 @@
 
             <button id = "search" type="button" onclick=location.href="{% url "phenotype_search" %}" >Phenotype Search </button>
             <button id = "list" type="button" onclick=location.href="{% url "phenotype_list" %}" >Phenotype List</button>
-            <button id = "searchsnp" type="button" onclick=location.href="{% url "snp_search" %}" > SNP Search </button>
+            <button id = "searchsnp" type="button" onclick=location.href="{% url "snp_search" %}" >SNP Search (by Rsid) </button>
+            <button id = "searchsnp2" type="button" onclick=location.href="{% url "snp_search_nbr" %}">SNP Search (by Chr#) </button>
 
         {% else %}
             <!-- Not logged in -->

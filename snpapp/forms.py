@@ -23,3 +23,22 @@ class snp_search_form(forms.Form):
     my_snp = forms.CharField(label='Snp Rsid*', required=True)
     my_snp.widget = forms.TextInput(attrs={'id': 'snptags', })
 
+
+class snp_search_nbr_form(forms.Form):
+    chr = forms.CharField(label='Chromosome number:*', required=True)
+    chr.widget = forms.TextInput(attrs={'id': 'chrtags', })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

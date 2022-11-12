@@ -4,8 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.views.decorators.csrf import csrf_exempt
-from .forms import UserRegisterForm, phenotype_search_form, snp_search_form
-from .models import Disease_Trait, SNP2Phenotype2Ref, SNP
+from .forms import UserRegisterForm, phenotype_search_form, snp_search_form, snp_search_nbr_form
+from .models import Disease_Trait, SNP2Phenotype2Ref, Reference, SNP
 from django.db.models import F
 
 
@@ -100,6 +100,20 @@ def snp_selected(request, rs_id, ref_id):
         return render(request, 'snpapp/snp_detail.html', {'posts': snp})
 
 
+@login_required
+def snp_search_nbr(request):
+    if request.method == "POST":
+        form = snp_search_nbr_form(request.POST)
+        if form.is_valid():
+            joinData = SNP2Phenotype2Ref.objects.select_related('snp')\
+                .annotate(chrom=F('snp__chromosome_number') , pos=F('snp__chromosome_pos'))\
+                .values('snp_id', 'reference_id', 'disease_trait_id','pvalue','neglog10pvalue','chrom','pos')\
+                .filter(chrom=form.cleaned_data['chr'])
+            return render(request, 'snpapp/snp_results.html', {'posts': joinData})
+    else:
+        form = snp_search_nbr_form()
+        all_snp = SNP.objects.all()
+    return render(request, 'snpapp/snp_search_nbr.html', {'form': form, "snps": all_snp})
 
 
 
