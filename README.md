@@ -31,7 +31,7 @@ python manage.py runserver
 
 ```
 
-**Open a web browser and use the adress:** http://127.0.0.1:8000/
+**Open a web browser and use the adress:** http://127.0.0.1:8000/ or **use directly** http://aimen99.eu.pythonanywhere.com/
 
 # Author
 CHERIF Aimen

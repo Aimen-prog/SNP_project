@@ -26,7 +26,7 @@ SECRET_KEY = 'nrej2jp$2d68126uzag@$3(+&54!#fo2^s@yf_e$)ij%0e&7gv'
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1',
-                 'http://aimen99.eu.pythonanywhere.com/']
+                 'aimen99.eu.pythonanywhere.com']
 
 
 # Application definition
