@@ -31,5 +31,7 @@ python manage.py runserver
 
 ```
 
+**Open a web browser and use the adress:** http://127.0.0.1:8000/
+
 # Author
 CHERIF Aimen
