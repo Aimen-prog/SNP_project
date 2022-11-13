@@ -6,24 +6,30 @@ README
 <br>
 <a href="https://github.com/Aimen-prog/SNP_project"><img src="snpapp/static/img/homelogo.png" alt="Logo" ></a>
 <br>
-<h2>Install all the needed dependencies</h2>
+
+**Install all the needed dependencies**
+
 ```bash
 cd ~/Desktop/projectsnp
 pip install -r requirements.txt
+
 ```
 
-<h2>Import data and populate the databases in any case</h2>
+**Import data and populate the databases in any case**
 ```bash
 python manage.py makemigrations
 python manage.py migrate
 python manage.py importData gwas_catalog.csv
 ./manage.py makemigrations snpapp
 ./manage.py migrate snpapp
+
 ```
 
-<h2>Start the App</h2>
+**Start the App**
 ```bash
 python manage.py runserver
+
 ```
+
 # Author
 CHERIF Aimen
