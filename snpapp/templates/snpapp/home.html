@@ -84,14 +84,15 @@
             <center><h2 style="color:white;width: 20%; margin-top: 35px"> Welcome,
             <h1 style="color:white;width: 20%; margin-top: 35px; text-transform: uppercase;">{{ user.username }}! </h1></h2></center>
 
-            <button id = "search" type="button" onclick=location.href="{% url "phenotype_search" %}" >Phenotype Search </button>
+            <button id = "search" type="button" onclick=location.href="{% url "phenotype_search" %}" >Phenotype Search</button>
             <button id = "list" type="button" onclick=location.href="{% url "phenotype_list" %}" >Phenotype List</button>
-            <button id = "searchsnp" type="button" onclick=location.href="{% url "snp_search" %}" >SNP Search (by Rsid) </button>
-            <button id = "searchsnp2" type="button" onclick=location.href="{% url "snp_search_nbr" %}">SNP Search (by Chr#) </button>
+            <button id = "searchsnp" type="button" onclick=location.href="{% url "snp_search" %}" >Basic SNP Search<h4>(only by Rsid)</h4></button>
+            <button id = "searchsnp2" type="button" onclick=location.href="{% url "snp_search_nbr" %}">Advanced SNP Search<h4>(only by Chromosome Number)</h4></button>
+            <button id = "searchsnp3" type="button" onclick=location.href="{% url "snp_search_pos" %}">Pro SNP Search<h4>(by Chromosome Region)</h4></button>
+            <button id = "help" type="button" onclick=location.href="{% url "informations" %}">Help</button>
 
         {% else %}
             <!-- Not logged in -->
-
                 <center><img style="width: 20%; margin-top: 55px;" src="{% static 'img/homelogo.png' %}"></center>
                 <div id="hometext">
                     <br><br>
@@ -99,9 +100,9 @@
                     <p style="font-size: 1.4em;">
                     &#8594 Registration is required to get started.<br><br>
                     &#8594 After registration, you can:<br><br>
-                    &#10004 Search for a phenotype(Disease/Trait) of interest and get further informations. You can either use a search bar or a list.
+                    &#10004 Search for a phenotype(Disease/Trait) of interest and find its related informations. You can either use a search bar or a list.
                     <br><br>
-                    &#10004 Search for an SNP of interest using the Rsid and find its related informations.<br><br></p>
+                    &#10004 Search for an SNP of interest and find its related informations.You can search using different options.<br><br></p>
                 </div>
 
                 <!-- Some stats -->

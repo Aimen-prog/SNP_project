@@ -37,5 +37,8 @@ urlpatterns = [
     path('snp_selected/<str:rs_id>/<str:ref_id>', v.snp_selected, name='snp_selected'),
     re_path(r'^snp_search_nbr/$', v.snp_search_nbr, name='snp_search_nbr'),
 
+    re_path(r'^snp_search_pos/$', v.snp_search_pos, name='snp_search_pos'),
+    re_path(r'^informations/$', v.getInformations, name='informations'),
+
 
 ]

@@ -25,7 +25,15 @@ class snp_search_form(forms.Form):
 
 
 class snp_search_nbr_form(forms.Form):
-    chr = forms.CharField(label='Chromosome number:*', required=True)
+    chr = forms.CharField(label='Chromosome number*', required=True)
+    chr.widget = forms.TextInput(attrs={'id': 'chrtags', })
+
+
+class snp_search_pos_form(forms.Form):
+    start = forms.IntegerField(label='Chromosome position start*', required=True)
+    end = forms.IntegerField(label='Chromosome position end*', required=True)
+
+    chr = forms.CharField(label='Chromosome number (optional)', required=False)
     chr.widget = forms.TextInput(attrs={'id': 'chrtags', })
 
 

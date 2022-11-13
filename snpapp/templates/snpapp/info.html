@@ -1,0 +1,58 @@
+
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>SNP Analyzer Help</title>
+</head>
+
+
+
+<body  style="position: relative;background-image:url('../static/img/imageedit.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 1200px;
+  width: 100%;
+  padding-bottom: 100px;">
+
+<center><h1 style="color: whitesmoke;background-color: #0d3e5f; font-size: 50px">Help page</h1></center>
+<h1 style="color: whitesmoke;background-color: #0d3e5f">Search buttons detail:</h1>
+<br>
+<b style="font-size: 20px">Phenotype Search button:</b><br>
+Search for a phenotype(Trait/Disease) and get related informations in a datatable. You can also get informations about related SNP by clicking on the Rsid of interest.<br>
+<b style="font-size: 20px">Phenotype List button:</b><br>
+See all available traits and diseases and get informations about a phenotype by clicking on its name, you can also get informations about related SNP by clicking on the Rsid of interest.<br>
+<b style="font-size: 20px">SNP Search buttons:</b> <br>
+Search for an SNP of interest and find its related informations, you can also get informations about related phenotype by clicking on the name of the phenotype.<br>
+You can search using different options depending on search version:
+<br><b>&#8594 Basic version button:</b> Search only by entering the Rsid, suggestions are provided with a scroll menu.<br> <b style="color: red">Note:</b> Enter only the number ( without "rs" at the beginning)
+<br>
+<b>&#8594 Advanced version button:</b> Search by entering the chromosome number of the SNP, suggestions are provided with a scroll menu.
+This will give you all the SNPs for a specific chromosome.
+<br>
+<b>&#8594 Pro version button:</b> Search an SNP by entering its chromosome position and/or the chromosome number (the region of interest) for more precision.<br>
+<b style="color: red">Note:</b> This process could take some time depending on selected chromosome range.
+<br><br>
+<hr>
+<h1 style="color: whitesmoke;background-color: #0d3e5f">Headers detail:</h1>
+<br>
+<b> PUBMEDID:</b> PubMed identification number.<br>
+<b>DATE:</b>  Publication date (online (epub) date if available).<br>
+<b>JOURNAL:</b>  Abbreviated journal name.<br>
+<b>STUDY:</b>  Title of paper.<br>
+<b>DISEASE/TRAIT:</b>  Disease or trait examined in study.<br>
+<b>CHROMOSOME NUMBER:</b>  Chromosome number associated with rs number.<br>
+<b>CHROMOSOME POSITION:</b>  Chromosomal position associated with rs number.<br>
+<b>RSID:</b>  current rs number (can differ from strongest SNP if merged).<br>
+<b>PVALUE:</b>  Reported p-value for strongest SNP risk allele (linked to dbGaP Association Browser).<br>
+<b style="color: red">Note:</b> p-values are rounded to 1 significant digit (for example, a published p-value of 4.8 x 10-7 is rounded to 5 x 10-7).
+<br>
+<h4>Data source: <a href="https://www.ebi.ac.uk/gwas/home"> Gwas Catalog</a></h4>
+<h4>Script: <a href="https://github.com/Aimen-prog"> Git</a></h4>
+
+
+</body>
+</html>
+

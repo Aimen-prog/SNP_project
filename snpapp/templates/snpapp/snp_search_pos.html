@@ -1,0 +1,57 @@
+{% extends "snpapp/home.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+
+{% block start %}
+    <!--Unescape for autocomplete strings-->
+    {% autoescape off %}
+        <head>
+            <!--Adding Javascript and css-->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>
+            <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+                  rel="stylesheet" type="text/css"/>
+            <link rel="stylesheet" type="text/css" href="{% static "home.css" %}"/>
+            <style>
+            .post-form {
+            font-size: 1.3em;
+            }</style>
+        </head>
+
+        <body style="background-color: whitesmoke">
+        <div style="width: 20%; margin-top: 55px;">
+            <h1>Search for SNP</h1>
+            <h4> <b style="color: red">Note:</b> this process could take some time depending on selected chromosome range</h4>
+            <form method="POST" class="post-form">{% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="save btn btn-default">Search</button>
+                <br>
+                <hr>
+
+                <a href="{% url "snp_search" %}"> &#8594 Search by Rsid (Basic)</a>
+                <br>
+                <a href="{% url "snp_search_nbr" %}"> &#8594 Search by chromosome number (Advanced)</a>
+            </form>
+
+            <script>
+                $(function () {
+                    var availableTags = [
+                        {% for snip in snps %}
+                            "{{snip.chromosome_number}}",
+                        {% endfor %}
+                    ];
+                    var filter = function(value, index){ return this.indexOf(value) == index };
+                    var availableTagss = availableTags.filter(filter, availableTags );
+
+                    $("#chrtags").autocomplete({
+                        source: availableTagss
+                    });
+
+                });
+            </script>
+
+        </div>
+        </body>
+    {% endautoescape %}
+{% endblock start %}

@@ -1,0 +1,49 @@
+{% extends "snpapp/home.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+
+{% block start %}
+     <link rel="stylesheet" type="text/css" href="{% static "home.css" %}"/>
+<head>
+    <!--Adding Javascript and css-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <!--Initializing dataTable-->
+    <script>
+        $(document).ready(function () {
+        $('#snptab').DataTable();
+        });
+    </script>
+</head>
+
+<body style="background-color: whitesmoke">
+<br><br>
+<div>
+ <table id="snptab" class="display" >
+ <thead>
+  <tr>
+    <th>Rsid</th>
+    <th>Chromosome number</th>
+    <th>Chromosome position</th>
+    <th>Pvalue</th>
+    <th>-log(Pvalue)</th>
+  </tr>
+  </thead>
+ <tbody>
+
+    {% for post in posts %}
+            <tr>
+                <td><a href="/snp_selected/{{ post.snp_id }}/{{ post.reference_id }}">{{ post.snp_id}}</a></td>
+                <td>{{ post.chrom}}</td>
+                <td>{{ post.pos }}</td>
+                <td>{{ post.pvalue}}</td>
+                <td>{{ post.neglog10pvalue}}</td>
+            </tr>
+     {% endfor %}
+ </tbody>
+</table>
+</div>
+</body>
+{% endblock start %}
