@@ -4,7 +4,7 @@ README
 # About SNP ANALYZER:
 <h3><em>A SNP navigation website created using Django framework.</em></h3>
 <br>
-<img src="snpapp/static/img/homelogo.png">
+<img src="https://github.com/Aimen-prog/SNP_project/tree/master/snpapp/static/img/homelogo.png">
 <br>
 
 **Install all the needed dependencies**
