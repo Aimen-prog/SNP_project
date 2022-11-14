@@ -70,8 +70,6 @@ html{
 }
 
 
-
-
 span{
     color: darkgrey
 }
@@ -90,10 +88,10 @@ span{
 
 #search{
     top: 15%;
-    left: 15%;
+    left: 18%;
     display: block;
-    width: 32.8%;
-    length: 30%;
+    width: 28%;
+    length: 20%;
     background-color: #0d3e5f;
     box-shadow: 10px 5px 4px white;
     padding: 139px 58px;
@@ -108,8 +106,8 @@ span{
     top: 15%;
     left: 55%;
     display: block;
-    width: 32.8%;
-    length: 30%;
+    width: 28%;
+    length: 20%;
     background-color: #0d3e5f;
     box-shadow: 10px 5px 4px white;
     padding: 139px 58px;
@@ -123,10 +121,10 @@ span{
 
 #searchsnp{
     top: 42%;
-    left: 15%;
+    left: 18%;
     display: block;
-    width: 32.8%;
-    length: 30%;
+    width: 28%;
+    length: 20%;
     background-color: #0d3e5f;
     box-shadow: 10px 5px 4px white;
     padding: 139px 58px;
@@ -137,28 +135,13 @@ span{
     text-align: center;
 
 }
-#searchsnp2{
+
+#searchsnpchr{
     top: 42%;
     left: 55%;
     display: block;
-    width: 32.8%;
-    length: 30%;
-    background-color: #0d3e5f;
-    box-shadow: 10px 5px 4px white;
-    padding: 139px 58px;
-    position: absolute;
-    font-size: 46px;
-    color: white;
-    cursor: pointer;
-    text-align: center;
-
-}
-#searchsnp3{
-    top: 72%;
-    left: 35%;
-    display: block;
-    width: 32.8%;
-    length: 30%;
+    width: 28%;
+    length: 20%;
     background-color: #0d3e5f;
     box-shadow: 10px 5px 4px white;
     padding: 139px 58px;

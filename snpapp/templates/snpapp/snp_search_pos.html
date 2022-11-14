@@ -22,16 +22,16 @@
         <body style="background-color: whitesmoke">
         <div style="width: 20%; margin-top: 55px;">
             <h1>Search for SNP</h1>
+            <h4><b> Scan a specific chromosome part</b></h4>
             <h4> <b style="color: red">Note:</b> this process could take some time depending on selected chromosome range</h4>
             <form method="POST" class="post-form">{% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit" class="save btn btn-default">Search</button>
                 <br>
                 <hr>
-
-                <a href="{% url "snp_search" %}"> &#8594 Search by Rsid (Basic)</a>
+                <a href="{% url "snp_search_nbr" %}"> &#8594 Search <b>only</b> by chromosome number </a>
                 <br>
-                <a href="{% url "snp_search_nbr" %}"> &#8594 Search by chromosome number (Advanced)</a>
+                <a href="{% url "snp_search" %}"> &#8594 Search by Rsid </a>
             </form>
 
             <script>

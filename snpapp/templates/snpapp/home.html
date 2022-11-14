@@ -87,9 +87,8 @@
 
             <button id = "search" type="button" onclick=location.href="{% url "phenotype_search" %}" >Phenotype Search</button>
             <button id = "list" type="button" onclick=location.href="{% url "phenotype_list" %}" >Phenotype List</button>
-            <button id = "searchsnp" type="button" onclick=location.href="{% url "snp_search" %}" >Basic SNP Search<h4>(only by Rsid)</h4></button>
-            <button id = "searchsnp2" type="button" onclick=location.href="{% url "snp_search_nbr" %}">Advanced SNP Search<h4>(only by Chromosome Number)</h4></button>
-            <button id = "searchsnp3" type="button" onclick=location.href="{% url "snp_search_pos" %}">Pro SNP Search<h4>(by Chromosome Region)</h4></button>
+            <button id = "searchsnp" type="button" onclick=location.href="{% url "snp_search" %}" >SNP Search<h4>(only by Rsid)</h4></button>
+            <button id = "searchsnpchr" type="button" onclick=location.href="{% url "snp_search_pos" %}">SNP Search<h4>(by Chromosome Region)</h4></button>
 
         {% else %}
             <!-- Not logged in -->
@@ -102,7 +101,7 @@
                     &#8594 After registration, you can:<br><br>
                     &#10004 Search for a phenotype(Disease/Trait) of interest and find its related informations. You can either use a search bar or a list.
                     <br><br>
-                    &#10004 Search for an SNP of interest and find its related informations. You can search using different options.<br><br></p>
+                    &#10004 Search for an SNP of interest and find its related informations. You can use different search options.<br><br></p>
                 </div>
 
                 <!-- Some stats -->
